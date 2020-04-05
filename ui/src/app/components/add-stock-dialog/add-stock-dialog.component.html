@@ -1,12 +1,18 @@
-<nb-card [nbSpinner]="busy">
+<nb-card>
     <nb-card-header class="text-center">
-        Add stock for {{item.Name}}
+        <p *ngIf="!addNew">Add stock for {{itemName}}</p>
+        <p *ngIf="addNew">Add new stock</p>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body [nbSpinner]="busy > 0">
         <nb-alert status="danger" *ngIf="hasError">
             {{error}}
         </nb-alert>
         <form [formGroup]="addForm" class="form mt-4">
+            <div class="form-group row" *ngIf="addNew">
+                <nb-select placeholder="Select a product" fullWidth formControlName="selectedProduct" (selectedChange)="updateProduct($event)">
+                    <nb-option *ngFor="let p of products" value="{{p.Id}}">{{p.Name}}</nb-option>
+                </nb-select>
+            </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Quantity: </label>
                 <div class="col-10">

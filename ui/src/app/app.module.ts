@@ -21,7 +21,8 @@ import {
   NbSelectModule,
   NbMenuModule,
   NbToggleModule,
-  NbCheckboxModule
+  NbCheckboxModule,
+  NbActionsModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -35,6 +36,7 @@ import { ConsumeStockDialogComponent } from './components/consume-stock-dialog/c
 import { ErrorInterceptor } from './error/error.interceptor';
 import { ErrorComponent } from './pages/error/error.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ActionToolbarComponent } from './components/action-toolbar/action-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     AddStockDialogComponent,
     ConsumeStockDialogComponent,
     ErrorComponent,
-    SettingsComponent
+    SettingsComponent,
+    ActionToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     NbSelectModule,
     NbMenuModule.forRoot(),
     NbToggleModule,
-    NbCheckboxModule
+    NbCheckboxModule,
+    NbActionsModule
   ],
   providers: [
     Title,

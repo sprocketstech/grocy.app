@@ -6,6 +6,10 @@
       </a>
       <a class="logo" href="#">{{getTitle()}}</a>
     </div>
+
+    <div class="header-container ml-auto">
+      <app-action-toolbar></app-action-toolbar>
+    </div>
   </nb-layout-header>
   <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive state="compacted">
     <nb-menu [items]="items"></nb-menu>

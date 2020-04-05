@@ -6,18 +6,20 @@ import { Stock, StockDetail } from '../models/stock';
 import { Location } from '../models/location';
 import { LocalSettings } from '../models/settings';
 import { ProductGroup } from '../models/product_group';
+import { Product } from '../models/product';
 
 class stockProduct {
+  id: string;
   name: string;
   product_group_id: string;
 }
 class stockResult {
-  product_id: number;
-  amount_aggregated: number;
+  product_id: string;
+  amount_aggregated: string;
   product: stockProduct;
 }
 class stockEntry {
-  product_id: number;
+  product_id: string;
   amount: string;
   location_id: number;
 }
@@ -56,6 +58,22 @@ export class GrocyService {
     });
   }
 
+  public getAllProducts() : Observable<Product[]> {
+    return this.http.get<stockProduct[]>(this.currentConfigSubject.value?.URL + '/api/objects/products', { headers: this.httpHeaders })
+    .pipe(
+      map((res) => res.filter(r => this.shouldShowProduct(r))),
+      map((data : stockProduct[]) => 
+        data.map(item => {
+          let r = new Product();
+          r.Id =  item.id;
+          r.Name = item.name;
+          return r;
+        })
+      )
+    );
+  }
+
+  
   public getProductGroups() : Observable<ProductGroup[]> {
     return this.http.get<productGroupResult[]>(this.currentConfigSubject.value?.URL + '/api/objects/product_groups', { headers: this.httpHeaders })
     .pipe(
@@ -73,13 +91,13 @@ export class GrocyService {
   public getAllStock() : Observable<Stock[]> {
     return this.http.get<stockResult[]>(this.currentConfigSubject.value?.URL + '/api/stock', { headers: this.httpHeaders })
       .pipe(
-        map((res) => res.filter(r => this.showStock(r))),
+        map((res) => res.filter(r => this.shouldShowStock(r))),
         map((data : stockResult[]) => 
           data.map(item => {
             let stock = new Stock();
-            stock.ProductId = item.product_id;
-            stock.ProductGroupId = parseInt(item.product.product_group_id) || 0;
-            stock.Amount = item.amount_aggregated;
+            stock.ProductId = parseInt(item.product_id, 10) || 0;
+            stock.ProductGroupId = parseInt(item.product.product_group_id, 10) || 0;
+            stock.Amount = parseInt(item.amount_aggregated, 10) || 0;
             stock.Name = item.product.name;
             return stock;
           })
@@ -223,8 +241,13 @@ export class GrocyService {
     this.currentConfigSubject.next(config);
   }
 
-  private showStock(item : stockResult) : boolean {
+  private shouldShowStock(item : stockResult) : boolean {
     const config = this.currentConfigSubject?.value;
     return config.ShowAllStock || config.ShowStocksInGroup.indexOf(parseInt(item.product.product_group_id, 10) || 0) > -1;
+  }
+
+  private shouldShowProduct(item : stockProduct) : boolean {
+    const config = this.currentConfigSubject?.value;
+    return config.ShowAllStock || config.ShowStocksInGroup.indexOf(parseInt(item.product_group_id, 10) || 0) > -1;
   }
 }
