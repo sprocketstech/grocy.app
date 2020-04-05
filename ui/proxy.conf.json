@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+      "target": "http://hass.local:41050/",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+}

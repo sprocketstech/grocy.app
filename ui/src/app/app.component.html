@@ -1,0 +1,16 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <div class="header-container">
+      <a href="#" class="sidebar-toggle" (click)="toggleSidebar()">
+        <nb-icon icon="menu-2-outline"></nb-icon>
+      </a>
+      <a class="logo" href="#">{{getTitle()}}</a>
+    </div>
+  </nb-layout-header>
+  <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive state="compacted">
+    <nb-menu [items]="items"></nb-menu>
+  </nb-sidebar>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

@@ -1,0 +1,50 @@
+
+@media (min-width: 576px) and (max-width: 1024.1px) {
+    .card-deck nb-card {
+        -ms-flex: 0 0 48.7%;
+        flex: 0 0 48.7%;
+    }
+}
+
+@media (min-width: 1024.1px) and (max-width: 1800.1px) {
+    .card-deck nb-card {
+        -ms-flex: 0 0 32%;
+        flex: 0 0 32%;
+        margin-left: 5px;
+    }
+}
+
+@media (min-width: 1800.1px)
+{
+    .card-deck nb-card {
+        -ms-flex: 0 0 24%;
+        flex: 0 0 24%;
+        margin-left: 10px;
+    }
+}
+
+.stock-item nb-card-body {
+    padding: 0;
+}
+
+
+.stock-accordion {
+    border: none;
+    box-shadow: none;
+    height: 100%;
+}
+
+.stock-accordion nb-accordion-item {
+    height: 100%;
+}
+
+.stock-accordion nb-accordion-item-header {
+    height: 100%;
+}
+
+.stock-accordion .row {
+    width: 100%;
+}
+.btn-no-pad {
+    padding: 2px !important;
+}

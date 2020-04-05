@@ -1,0 +1,33 @@
+<nb-layout center>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-body>
+                <div class="text-center">
+                    <pre>
+  ██╗  ██╗ ██████╗ ██╗  ██╗
+  ██║  ██║██╔═████╗██║  ██║
+  ███████║██║██╔██║███████║
+  ╚════██║████╔╝██║╚════██║
+       ██║╚██████╔╝     ██║
+       ╚═╝ ╚═════╝      ╚═╝
+                    </pre>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <p>404 Page Not Found</p>
+                        <p class="sub-title">Oops... The page you are looking for has gone missing. Please check with
+                            our lost and found if they seen it.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <button nbButton hero status="danger" (click)="goToHome()" [nbSpinner]="loading"
+                            nbSpinnerStatus="danger">
+                            Take me home...
+                        </button>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

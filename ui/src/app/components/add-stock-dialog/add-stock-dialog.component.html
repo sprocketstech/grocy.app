@@ -1,0 +1,30 @@
+<nb-card [nbSpinner]="busy">
+    <nb-card-header class="text-center">
+        Add stock for {{item.Name}}
+    </nb-card-header>
+    <nb-card-body>
+        <nb-alert status="danger" *ngIf="hasError">
+            {{error}}
+        </nb-alert>
+        <form [formGroup]="addForm" class="form mt-4">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Quantity: </label>
+                <div class="col-10">
+                    <input type="number" nbInput fullWidth placeholder="Quantity" formControlName="quantity" min="1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Location: </label>
+                <div class="col-10">
+                    <nb-select placeholder="Select Location" formControlName="location" fullWidth>
+                        <nb-option *ngFor="let l of locations" value="{{l.Id}}">{{l.Name}}</nb-option>
+                    </nb-select>        
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+    <nb-card-footer class="float-right">
+        <button nbButton (click)="cancel()" status="danger" class="float-right">Cancel</button>
+        <button nbButton (click)="ok()" status="primary" class="float-right mr-1" [disabled]="!addForm.valid">OK</button>
+    </nb-card-footer>
+</nb-card>

@@ -1,0 +1,27 @@
+<nb-layout center>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col text-center">
+                        <h3>Oops... we ran into a problem</h3>
+                        <p class="sub-title">{{status}}: {{message}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <button nbButton hero status="danger" (click)="goToReturn()" [nbSpinner]="loading"
+                            nbSpinnerStatus="danger">
+                            Try again...
+                        </button>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
+
+<p>error works!</p>
+<p>Status: {{status}}</p>
+<p>Message: {{message}}</p>
+<p>returnUrl: {{returnUrl}}</p>

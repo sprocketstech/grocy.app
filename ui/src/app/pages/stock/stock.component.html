@@ -1,0 +1,43 @@
+<nb-layout>
+    <nb-layout-column [nbSpinner]="loading">
+        <div class="card-deck">
+            <nb-card *ngFor="let s of stock" class="stock-item">
+                <nb-card-body>
+                    <nb-accordion class="stock-accordion">
+                        <nb-accordion-item (collapsedChange)="retrieveDetails($event, s)">
+                            <nb-accordion-item-header>
+                                <div class="row align-items-center">
+                                    <div class="col-9">{{s.Name}}</div>
+                                    <div class="col-2">{{s.Amount | number:'1.0-2'}}</div>
+                                </div>
+                            </nb-accordion-item-header>
+                            <nb-accordion-item-body [nbSpinner]="s.Loading">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="row" *ngFor="let d of s.Details">
+                                            <div class="col-9 font-weight-bold">{{d.Location}}:</div>
+                                            <div class="col-2">{{d.Amount}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div>
+                                            <button nbButton ghost size="large" (click)="addStock(s)" class="btn-no-pad">
+                                                <nb-icon icon="plus-square-outline"></nb-icon>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button nbButton ghost size="large" (click)="consumeStock(s)" class="btn-no-pad">
+                                                <nb-icon icon="minus-square-outline"></nb-icon>
+                                            </button>
+                                        </div>
+                                            
+                                    </div>
+                                </div>
+                            </nb-accordion-item-body>
+                        </nb-accordion-item>
+                    </nb-accordion>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </nb-layout-column>
+</nb-layout>

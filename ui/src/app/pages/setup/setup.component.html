@@ -1,0 +1,30 @@
+<nb-layout center>
+    <nb-layout-column style="max-width: 630px;">
+        <nb-card [nbSpinner]="loading">
+            <nb-card-body>
+                <nb-alert status="danger" *ngIf="hasError">
+                    Could not connect to grocy, check your URL and API Key and try again.
+                    Error reported was: {{error}}
+                </nb-alert>
+                <h6 *ngIf="!hasError" class="text-center">Welcome to grocy.app, please enter your Grocy URL and API key to continue:</h6>
+                <form [formGroup]="setupForm" class="form mt-4">
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">URL: </label>
+                        <div class="col-10">
+                            <input type="text" nbInput fullWidth placeholder="Grocy URL" formControlName="URL">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">API Key: </label>
+                        <div class="col-10">
+                            <input type="text" nbInput fullWidth placeholder="Grocy API Key" formControlName="APIKey">
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+            <nb-card-footer class="text-center">
+                <button nbButton status="primary" (click)="setGrocyConfig()" [disabled]="!setupForm.valid">Continue</button>
+            </nb-card-footer>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
